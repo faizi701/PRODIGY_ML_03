@@ -1,50 +1,67 @@
-# 🤖 Hand Gesture Recognition with CNN (LeapGestRecog Dataset)
+Hand Gesture Recognition Project
+Overview
+This repository contains a hand gesture recognition system developed using a Convolutional Neural Network (CNN) trained on the LeapGestRecog dataset. The project includes a Jupyter notebook for model training, a TensorFlow Lite model for inference, and a Streamlit web application for real-time gesture recognition via webcam. The model classifies 10 hand gestures (e.g., "thumb", "palm", "down") with a test accuracy of approximately 99.90%.
+Features
 
-This project trains a Convolutional Neural Network (CNN) from scratch to classify 10 different hand gestures using the LeapGestRecog dataset. The model achieves over **99.87% accuracy** and is also converted to **TensorFlow Lite** for lightweight deployment.
+Trains a CNN on 128x128 RGB images from the LeapGestRecog dataset.
+Converts the model to TensorFlow Lite for efficient deployment.
+Real-time gesture recognition using a webcam via a Streamlit app.
+Supports 10 gesture classes with balanced data (2000 samples per class).
 
+Prerequisites
 
-
-## 📌 Dataset
-- **Source**: [LeapGestRecog](https://www.kaggle.com/datasets/gti-upm/leapgestrecog)
-- **Classes**:  
-  `['c', 'down', 'fist', 'fist_moved', 'index', 'l', 'ok', 'palm', 'palm_moved', 'thumb']`
-- **Image Size**: 128x128 (grayscale)
-
----
-
-🧠 Model Details
-- **Architecture**: CNN (custom built using Keras)
-- **Accuracy**: 99.87% on test set
-- **Loss Function**: Categorical Crossentropy
-- **Optimizer**: Adam
-- **Conversion**: TensorFlow Lite (TFLite) model available
-
-
-
-📁 Project Structure
-
-├── models/
-│ ├── leap_gesture_model.h5 # Trained model
-│ ├── leap_gesture_model.tflite # TFLite model for deployment
-│ └── label_map.npy # Saved label mapping
-├── src/
-│ └── main.py # Full training + testing code
-├── README.md
-├── requirements.txt
+Python 3.11 or higher
+Required libraries:
+opencv-python
+numpy
+matplotlib
+scikit-learn
+tensorflow
+streamlit
+streamlit-webrtc
 
 
 
+Usage
+Training the Model
 
-## 🚀 How to Run
-ss
-```bash
-git clone https://github.com/your-username/gesture-recognition.git
-cd gesture-recognition
-pip install -r requirements.txt
-python src/main.py
-```
+Open hand-recognition (7).ipynb in Jupyter Notebook or a compatible environment.
+Ensure the dataset is correctly loaded from the dataset folder.
+Run all cells to train the model, save it as leap_gesture_model.h5, and convert it to leap_gesture_model.tflite.
+The label map is saved as label_map.npy.
 
-TensorFlow Lite Model
-The model is converted to TFLite for mobile/edge use.
-Input:  (None, 128, 128, 1)
-Output: (None, 10)
+Running the Streamlit App
+
+Ensure the trained leap_gesture_model.tflite and label_map.npy are in the root directory or specified path.
+
+Start the Streamlit app:
+streamlit run app.py
+
+
+Access the app at http://localhost:8501 in your browser.
+
+Use your webcam to perform gestures or upload images for prediction.
+
+
+Files
+
+hand-recognition (7).ipynb: Jupyter notebook for model training and evaluation.
+app.py: Streamlit application for real-time gesture recognition.
+leap_gesture_model.tflite: Trained TensorFlow Lite model.
+label_map.npy: Mapping of integer labels to gesture names.
+dataset/: Directory for the LeapGestRecog dataset (to be added locally).
+
+Notes
+
+The model was trained on 128x128 RGB images to match webcam input, addressing issues with grayscale-only training.
+Increasing image size to 224x224 caused RAM crashes on Kaggle; 128x128 is stable.
+For real-time use, ensure webcam permissions are granted in your browser.
+Test accuracy may vary slightly based on local hardware and dataset preprocessing.
+
+Contributing
+Feel free to fork this repository, submit issues, or propose enhancements via pull requests.
+Acknowledgments
+
+Dataset: LeapGestRecog from Kaggle 
+https://www.kaggle.com/datasets/gti-upm/leapgestrecog
+Inspiration: Kaggle community and Streamlit documentation.
